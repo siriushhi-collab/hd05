@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HD건설기계 울산공장 소개</title>
+  
+  <!-- Pretendard & 나눔고딕 웹폰트 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       1. 디자인 시스템 & 변수 설정
+       (보내주신 스크립트 기반 + HD건설기계 컬러 조합)
+       ========================================== */
+    :root {
+      /* 제공해주신 스타일 시스템 변수 */
+      --bg: #ffffff;
+      --bg-elev: #f8fafc;
+      --bg-alt: #0b192c;          /* 깊고 짙은 네이비/파랑 */
+      --text: #0f172a;
+      --text-dim: #475569;
+      --text-mute: #94a3b8;
+      --border: #e2e8f0;
+      
+      /* HD건설기계 브랜드 키 컬러 (짙은 파랑 + 조화로운 녹색) */
+      --primary-blue: #0b2b5a;     /* 메인 짙은 파랑 */
+      --accent-blue: #1d4ed8;      /* 포인트 파랑 */
+      --primary-green: #00a86b;    /* 메인 에메랄드 녹색 */
+      --accent-green: #10b981;     /* 하이라이트 녹색 */
+      
+      --shadow: 0 12px 32px rgba(15, 23, 42, .08);
+      --font-family: 'Nanum Gothic', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth; /* 책갈피 클릭 시 부드러운 스크롤 */
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-family);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================
+       2. Sticky Header / Navigation (책갈피)
+       ========================================== */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: -.01em;
+      font-size: 1.125rem;
+      color: var(--primary-blue);
+    }
+
+    .brand__mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 10px rgba(0, 168, 107, 0.2);
+    }
+
+    .nav__menu {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav__link {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .nav__link:hover,
+    .nav__link.active {
+      color: var(--primary-green);
+      background: var(--bg-elev);
+    }
+
+    /* ==========================================
+       3. 공통 섹션 레이아웃 & 타이틀
+       ========================================== */
+    section {
+      padding: 100px 0;
+      scroll-margin-top: 68px; /* 내비게이션 높이만큼 스크롤 위치 보정 */
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--primary-blue);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: var(--text-dim);
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================
+       4. Hero Section
+       ========================================== */
+    #hero {
+      background: linear-gradient(135deg, var(--bg-alt) 0%, var(--primary-blue) 100%);
+      color: #ffffff;
+      padding: 120px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 168, 107, 0.2) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 168, 107, 0.15);
+      color: var(--accent-green);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      margin-bottom: 24px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .hero-content h1 {
+      font-size: 3.25rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .hero-content h1 span {
+      background: linear-gradient(to right, #ffffff, var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: var(--text-mute);
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 28px 24px;
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-green);
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-mute);
+      margin-top: 4px;
+    }
+
+    /* ==========================================
+       5. 공장 개요 (About)
+       ========================================== */
+    #about {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .about-card {
+      background: var(--bg-elev);
+      padding: 36px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--primary-blue);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-card:nth-child(2) {
+      border-top-color: var(--primary-green);
+    }
+
+    .about-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .about-card h3 {
+      font-size: 1.35rem;
+      color: var(--primary-blue);
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .about-card p {
+      color: var(--text-dim);
+      font-size: 0.98rem;
+    }
+
+    /* ==========================================
+       6. 스마트 팩토리 (Smart Factory)
+       ========================================== */
+    #smart-factory {
+      background: var(--bg-elev);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-item {
+      background: var(--bg);
+      padding: 32px 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 168, 107, 0.1);
+      color: var(--primary-green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .feature-item h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+
+    .feature-item p {
+      font-size: 0.925rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================
+       7. 주요 제품 (Products)
+       ========================================== */
+    #products {
+      background: var(--bg);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .product-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-4px);
+    }
+
+    .product-img {
+      height: 180px;
+      background: linear-gradient(135deg, var(--primary-blue), #1e3a8a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+
+    .product-info {
+      padding: 24px;
+    }
+
+    .product-info h3 {
+      font-size: 1.25rem;
+      color: var(--primary-blue);
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    .product-info p {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================
+       8. ESG & 비전 (ESG)
+       ========================================== */
+    #esg {
+      background: linear-gradient(135deg, var(--bg-alt) 0%, #051428 100%);
+      color: #ffffff;
+    }
+
+    #esg .section-title h2 {
+      color: #ffffff;
+    }
+
+    #esg .section-title p {
+      color: var(--text-mute);
+    }
+
+    .esg-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .esg-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 32px;
+      backdrop-filter: blur(8px);
+    }
+
+    .esg-box h3 {
+      color: var(--accent-green);
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    .esg-box p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================
+       9. 오시는 길 (Location)
+       ========================================== */
+    #location {
+      background: var(--bg-elev);
+    }
+
+    .location-wrapper {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .location-info h3 {
+      color: var(--primary-blue);
+      font-size: 1.35rem;
+      margin-bottom: 24px;
+      font-weight: 800;
+    }
+
+    .info-item {
+      margin-bottom: 20px;
+    }
+
+    .info-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .info-item span {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+    }
+
+    .location-map-placeholder {
+      background: var(--bg-elev);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-mute);
+      font-weight: 700;
+      min-height: 240px;
+    }
+
+    /* ==========================================
+       10. Footer & Scroll Animation
+       ========================================== */
+    footer {
+      background: var(--bg-alt);
+      color: var(--text-mute);
+      text-align: center;
+      padding: 32px 0;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 반응형 레이아웃 */
+    @media (max-width: 768px) {
+      .nav__menu {
+        display: none; /* 모바일 단순화 */
+      }
+      .hero-content h1 {
+        font-size: 2.25rem;
+      }
+      .location-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky 책갈피 내비게이션 -->
+  <header class="nav">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="#hero" class="brand">
+          <div class="brand__mark">HD</div>
+          <span>HD건설기계 울산공장</span>
+        </a>
+        <ul class="nav__menu">
+          <li><a href="#about" class="nav__link">공장 개요</a></li>
+          <li><a href="#smart-factory" class="nav__link">스마트 팩토리</a></li>
+          <li><a href="#products" class="nav__link">주요 제품</a></li>
+          <li><a href="#esg" class="nav__link">ESG & 비전</a></li>
+          <li><a href="#location" class="nav__link">오시는 길</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. 히어로 섹션 -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content fade-in-up">
+        <div class="hero-badge">Global Production Hub</div>
+        <h1>세계 건설현장을 움직이는<br><span>HD건설기계 울산공장</span></h1>
+        <p>최첨단 스마트 공정 혁신과 친환경 기술력을 바탕으로 글로벌 건설기계 시장의 새로운 미래를 만들어갑니다.</p>
+      </div>
+
+      <div class="hero-stats fade-in-up">
+        <div class="stat-card">
+          <div class="stat-number" data-target="150">0</div>
+          <div class="stat-label">부지 면적 (만 m²)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="48000">0</div>
+          <div class="stat-label">연간 생산 능력 (대)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="140">0</div>
+          <div class="stat-label">글로벌 수출 국가 (개국)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 공장 개요 -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title fade-in-up">
+        <h2>공장 개요</h2>
+        <p>글로벌 건설기계 산업을 선도하는 핵심 마더팩토리(Mother Factory)</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card fade-in-up">
+          <h3>마더팩토리 역할</h3>
+          <p>울산공장은 HD건설기계의 글로벌 생산 네트워크 중심축으로서, 차세대 신제품 개발 및 최첨단 생산 기술 표준화를 주도하고 있습니다.</p>
+        </div>
+        <div class="about-card fade-in-up">
+          <h3>일관 생산 체계</h3>
+          <p>용접, 가공, 도장, 조립까지 이어지는 첨단 일관 생산 인프라를 보유하여 최고 품질의 굴착기 및 휠로더를 생산합니다.</p>
+        </div>
+        <div class="about-card fade-in-up">
+          <h3>글로벌 품질 검증</h3>
+          <p>자체 대규모 주행 및 작업 시험장을 통해 극지, 사막, 고산지대 등 극한 환경에서의 완벽한 신뢰성을 검증합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 스마트 팩토리 -->
+  <section id="smart-factory">
+    <div class="container">
+      <div class="section-title fade-in-up">
+        <h2>스마트 팩토리 & 혁신 설비</h2>
+        <p>지능형 공정 자동화 시스템으로 품질과 생산성을 극대화합니다.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item fade-in-up">
+          <div class="feature-icon">AI</div>
+          <h3>AI 기반 품질 검사</h3>
+          <p>딥러닝 기반 이미지 인식 모듈을 적용하여 주요 용접 부위 및 조립 정확도를 실시간으로 모니터링합니다.</p>
+        </div>
+        <div class="feature-item fade-in-up">
+          <div class="feature-icon">AGV</div>
+          <h3>자율주행 물류 (AGV)</h3>
+          <p>무인 자율주행 이송 로봇 시스템이 라인 간 부품 투입을 최적화하여 공정 대기 시간을 최소화합니다.</p>
+        </div>
+        <div class="feature-item fade-in-up">
+          <div class="feature-icon">IoT</div>
+          <h3>디지털 트윈 모니터링</h3>
+          <p>공장 전체 설비의 가동 상태를 가상 공간에 실시간 구현하여 예측 보전 및 에너지 효율을 개선합니다.</p>
+        </div>
+        <div class="feature-item fade-in-up">
+          <div class="feature-icon">ROB</div>
+          <h3>자동 도장 & 용접 로봇</h3>
+          <p>고도화된 다축 용접 및 도장 로봇 기술을 적용해 균일한 최상급 외관 품질과 안전성을 확보합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 주요 제품 -->
+  <section id="products">
+    <div class="container">
+      <div class="section-title fade-in-up">
+        <h2>주요 생산 제품</h2>
+        <p>울산공장에서 완성되어 전 세계로 수출되는 대표 메인 라인업</p>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card fade-in-up">
+          <div class="product-img">중대형 굴착기</div>
+          <div class="product-info">
+            <h3>HX / HW 시리즈 굴착기</h3>
+            <p>강력한 굴삭력과 최적의 연비 효율을 선사하며, 스마트 제어 시스템이 적용된 프리미엄 굴착기 라인업입니다.</p>
+          </div>
+        </div>
+        <div class="product-card fade-in-up">
+          <div class="product-img">휠로더</div>
+          <div class="product-info">
+            <h3>HL 시리즈 휠로더</h3>
+            <p>광산, 대형 토목 현장에서 우수한 적재 능력과 기동성을 자랑하는 차세대 친환경 휠로더입니다.</p>
+          </div>
+        </div>
+        <div class="product-card fade-in-up">
+          <div class="product-img">수소/전기 모빌리티</div>
+          <div class="product-info">
+            <h3>친환경 건설장비</h3>
+            <p>탄소중립 시대를 대비한 수소연료전지 굴착기 및 소형 전기 굴착기 등 차세대 동력 장비를 개발 생산합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. ESG & 비전 -->
+  <section id="esg">
+    <div class="container">
+      <div class="section-title fade-in-up">
+        <h2>ESG & 지속가능 경영</h2>
+        <p>환경을 생각하고 사람을 존중하는 미래형 사업장</p>
+      </div>
+
+      <div class="esg-container">
+        <div class="esg-box fade-in-up">
+          <h3>E - 친환경 에코 팩토리</h3>
+          <p>공장 지붕 태양광 발전 설비 운용 및 도장 공정 VOCs 저감 설비를 구축하여 탄소 배출 절감을 실천합니다.</p>
+        </div>
+        <div class="esg-box fade-in-up">
+          <h3>S - 안전보건 최우선 경영</h3>
+          <p>스마트 안전 헬멧 및 AI 중장비 충돌 방지 시스템 도입으로 중대재해 Zero 현장을 구현합니다.</p>
+        </div>
+        <div class="esg-box fade-in-up">
+          <h3>G - 지역사회 상생 협력</h3>
+          <p>울산 지역 협력사 기술 지원 및 스마트 공장 구축 자문 프로그램 등 지속적인 상생 활동을 펼칩니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 오시는 길 -->
+  <section id="location">
+    <div class="container">
+      <div class="section-title fade-in-up">
+        <h2>오시는 길</h2>
+        <p>HD건설기계 울산공장 방문안내</p>
+      </div>
+
+      <div class="location-wrapper fade-in-up">
+        <div class="location-info">
+          <h3>방문 정보</h3>
+          <div class="info-item">
+            <strong>주소</strong>
+            <span>울산광역시 동구 방어진순환도로 (HD현대 내)</span>
+          </div>
+          <div class="info-item">
+            <strong>대표 전화</strong>
+            <span>052-000-0000</span>
+          </div>
+          <div class="info-item">
+            <strong>방문 신청 안내</strong>
+            <span>보안 구역 특성상 사전 출입 신청 절차가 필요합니다. 담당자 안내에 따라 출입 등록을 진행해 주세요.</span>
+          </div>
+        </div>
+        <div class="location-map-placeholder">
+          [ 지도 영역 - Kakao / Google Map API 연동 ]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 HD Hyundai Construction Equipment Ulsan Plant. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+     11. 동적 움직임 효과 (JS)
+     ========================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      /* 1. 스크롤 위치 감지 및 책갈피 Nav Active 업데이트 */
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav__link');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      /* 2. Scroll Intersection Observer (등장 페이드인 효과) */
+      const observerOptions = {
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            // 히어로 섹션 숫자가 화면에 보일 때 카운팅 실행
+            if (entry.target.classList.contains('hero-stats')) {
+              animateNumbers();
+            }
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+      });
+
+      /* 3. 숫자 카운트업 인터랙션 */
+      let isCounted = false;
+      function animateNumbers() {
+        if (isCounted) return;
+        isCounted = true;
+
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(num => {
+          const target = +num.getAttribute('data-target');
+          const duration = 2000; // 2초 진행
+          const stepTime = 20;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+          let currentNum = 0;
+
+          const timer = setInterval(() => {
+            currentNum += increment;
+            if (currentNum >= target) {
+              num.innerText = target.toLocaleString();
+              clearInterval(timer);
+            } else {
+              num.innerText = Math.floor(currentNum).toLocaleString();
+            }
+          }, stepTime);
+        });
+      }
+
+    });
+  </script>
+</body>
+</html>
